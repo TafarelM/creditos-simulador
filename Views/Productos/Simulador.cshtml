@@ -1,0 +1,39 @@
+@model CreditosApp.Models.SimuladorViewModel
+
+<h2>Simulador de Cuotas - @Model.NombreProducto</h2>
+
+<form asp-action="Simulador" method="post">
+    <input type="hidden" asp-for="ProductoId" />
+    <input type="hidden" asp-for="NombreProducto" />
+    <input type="hidden" asp-for="MinMeses" />
+    <input type="hidden" asp-for="MaxMeses" />
+    <input type="hidden" asp-for="Tea" />
+    <input type="hidden" asp-for="ComisionPct" />
+
+    <div class="form-group">
+        <label asp-for="Monto"></label>
+        <input asp-for="Monto" class="form-control" />
+        <span asp-validation-for="Monto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Meses"></label>
+        <input asp-for="Meses" class="form-control" />
+        <span asp-validation-for="Meses" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Calcular</button>
+</form>
+
+@if (Model.Cuota > 0)
+{
+    <h3>Resultados:</h3>
+    <p>TEM: @Model.TEM:P6</p>
+    <p>Cuota mensual: S/. @Model.Cuota</p>
+    <p>Comisión: S/. @Model.Comision</p>
+    <p>Costo total: S/. @Model.CostoTotal</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
